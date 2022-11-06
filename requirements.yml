@@ -1,0 +1,10 @@
+roles:
+  - name: geerlingguy.docker
+  - name: geerlingguy.docker_arm
+  - name: quantumfate.zsh
+  - name: ironicbadger.snapraid
+  - name: geerlingguy.ntp
+  - name: geerlingguy.pip
+
+collections:
+  - name: kewlfft.aur

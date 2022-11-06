@@ -1,0 +1,12 @@
+---
+- name: Reconfigure ranger
+  block:
+    - name: Clear ranger config directory
+      file:
+        path: "{{ homedir }}.config/ranger"
+        state: absent
+    - name: Include ranger configuration task
+      include_tasks: roles/system/config/tasks/ranger.yml
+
+- name: Reconfigure git
+  include_tasks: roles/system/config/tasks/git.yml

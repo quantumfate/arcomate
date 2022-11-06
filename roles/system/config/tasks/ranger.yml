@@ -1,0 +1,19 @@
+---
+- name: Copy ranger configuration files into the user directory
+  ansible.builtin.shell: ranger --copy-config=all
+  args:
+    executable: /bin/bash
+  register: ranger_output
+  changed_when: "'^creating:' in ranger_output.stdout"
+
+- name: Activate rangers image preview
+  lineinfile:
+    dest: "{{ homedir }}.config/ranger/rc.conf"
+    regexp: '^set preview_images false$'
+    line: 'set preview_images true'
+
+- name: Set Ueberzug to be the default image preview
+  lineinfile:
+    dest: "{{ homedir }}.config/ranger/rc.conf"
+    regexp: '^set preview_images_method .*$'
+    line: 'set preview_images_method ueberzug'

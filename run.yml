@@ -1,0 +1,44 @@
+---
+- name: Run the playbook against all hosts
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  pre_tasks:
+    - name: Install the basic packages
+      import_tasks: tasks/packages.yml
+      tags:
+        - packages
+      
+    - name: Perform a system upgrade
+      import_tasks: tasks/updatepackages.yml
+      tags:
+        - packages
+        - upgrade
+      when: update_system | default(false)
+
+  roles: 
+  - role: system/config
+    tags:
+      - system
+      - config
+
+  - role: development/docker
+    tags:
+      - develoopment
+      - docker
+
+  - role: quantumfate.zsh
+    vars:
+      zsh_user: "{{ ansible_user }}"
+    tags:
+      - zsh
+      - dotfiles
+
+
+    post_tasks:
+      - name: Make sure notifying handlers will run at the end
+        import_tasks: tasks/notifier.yml
+        tags:
+          - notifier
+        

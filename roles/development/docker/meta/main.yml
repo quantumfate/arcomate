@@ -1,0 +1,33 @@
+---
+galaxy_info:
+  author: Leon Connor Holm
+  description: configure docker path
+  license: MIT
+  min_ansible_version: '2.0'
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+    - name: Debian
+  galaxy_tags:
+    - docker
+dependencies:
+  - role: geerlingguy.pip
+    tags:
+      - pip
+      - python
+      - docker
+    when: enable_docker | default(False)
+  - role: geerlingguy.docker_arm
+    tags:
+      - docker
+    when: 
+      - enable_docker | default(False)
+      - "{{ 'arm' in ansible_architecture }}"
+  - role: geerlingguy.docker
+    tags:
+      - docker
+    when: 
+      - enable_docker | default(False)
+      - "{{ '64' in ansible_architecture }}"

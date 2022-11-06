@@ -1,0 +1,6 @@
+---
+- name: Import git tasks
+  import_tasks: git.yml
+
+- name: Import ranger tasks
+  import_tasks: ranger.yml

@@ -1,0 +1,117 @@
+gitmail: leonconnorholm@gmail.com
+gituser: Leon Connor Holm
+email: leon-holm@outlook.de
+shell: /bin/zsh
+homedir: /home/leonch/
+ansible_user: leonch
+
+# Rolling release enabler
+update_system: true
+
+# Packages
+
+# Development
+dev_packages:
+  - ansible
+  - ansible-language-server
+  - ansible-lint
+  - python-pip
+  - neovim
+  - visual-studio-code-bin
+  - openjdk17-src
+  - openjdk17-doc
+  - jdk17-openjdk
+
+# Development Utility
+dev_util_packages:
+  - curl
+  - wget
+  - net-tools
+  - dnsutils
+
+# Desktop Environment Packages
+deenv_packages:
+  - zsh
+  - lightdm
+  - lightdm-slick-greeter
+  - picom
+  - dolphin
+  - thunar
+  - thunar-archive-plugin
+  - thunar-media-tags-plugin
+  - thunar-volman
+  - ranger
+  - feh
+  - rofi
+  - screenfetch
+  - ueberzug
+  - volumeicon
+  - blueberry
+  - xfce4-power-manager
+  - xfce4-appfinder
+  - xfce4-notifyd
+  - xfce4-panel
+  - xfce4-screenshooter
+  - xfce4-settings
+  - xfce4-taskmanager 
+  - xfce4-terminal
+  - neofetch
+
+# Social packages
+social_packages:
+  - teams
+  - telegram-desktop
+  - thunderbird
+
+# themes and theming
+themes_packages:
+  - lxappearance
+  - qt5ct
+  - nordic-standard-buttons-theme
+  - nordic-theme
+  - nordzy-icon-theme-git
+  - dracula-cursors-git
+  - dracula-gtk-theme
+  - dracula-icons-git 
+  - noto-fonts
+
+# Browser
+browser_packages:
+  - google-chrome
+  - brave-bin
+  - firefox
+
+# Music Packages
+music_packages:
+  - spotify
+  - spotifywm-git
+  - pulseaudio
+  - pulseaudio-alsa
+  - pulseaudio-bluetooth
+
+# Utility
+utility_packages:
+  - imagewriter
+  - udiskie
+  - keepassxc
+  - network-manager-applet
+  - networkmanager
+  - networkmanager-openconnect
+  - networkmanager-openvpn
+  - networkmanager-pptp
+  - networkmanager-vpnc
+  - p7zip
+  - scrot
+  - unrar
+  - unzip
+  - upower
+  - tmux
+
+# Cloud packages
+cloud_packages:
+  - dropbox
+
+all_packages: "{{ dev_packages + dev_util_packages + deenv_packages + social_packages + themes_packages + browser_packages + music_packages + utility_packages }}"
+
+# Enabling roles
+enable_docker: true
