@@ -1,7 +1,10 @@
 # ZSH config
 zsh_export_vars_extras:
-  - { name: 'JDK Home', variable: 'JDK_HOME', value: '/usr/lib/jvm/java-17-openjdk/'}
-  - { name: 'Java Home', variable: 'JAVA_HOME', value: '$JDK_HOME/bin'}
+  - { name: 'JDK Home', variable: 'JDK_HOME', value: /usr/lib/jvm/java-17-openjdk }
+  - { name: 'Java Home', variable: 'JAVA_HOME', value: $JDK_HOME/bin }
 
 zsh_paths_extras:
-  - { name: 'Java', path: '$JAVA_HOME'}
+  - { name: 'Java', path: $JAVA_HOME }
+
+zsh_aliases_extra:
+  - { alias: 'devon', action: 'source ~/.devon/devon' }
