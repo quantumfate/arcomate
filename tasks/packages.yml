@@ -24,7 +24,7 @@
     state: present
 
 - name: Install all specified packages
-  become: yes
+  become_user: aur_builder
   kewlfft.aur.aur:
     use: yay
     update_cache: yes
