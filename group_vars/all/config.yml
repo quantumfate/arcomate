@@ -2,6 +2,8 @@
 zsh_export_vars_extras:
   - { name: 'JDK Home', variable: 'JDK_HOME', value: /usr/lib/jvm/java-17-openjdk }
   - { name: 'Java Home', variable: 'JAVA_HOME', value: $JDK_HOME/bin }
+  - { name: 'Default editor', variable: 'EDITOR', value: 'nvim'}
+  - { name: 'Default editor', variable: 'VISUAL', value: 'nvim'}
 
 zsh_paths_extras:
   - { name: 'Java', path: $JAVA_HOME }
