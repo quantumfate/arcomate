@@ -29,6 +29,7 @@
     use: yay
     update_cache: yes
     state: present
+    extra_args: --useask
     name:
       "{{ all_packages }}"
 
