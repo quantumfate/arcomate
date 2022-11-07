@@ -6,3 +6,5 @@ pip_executable: pip
 docker_packages: 
   - docker
   - docker-compose
+# Zsh: https://github.com/quantumfate/ansible-role-zsh
+zsh_personal_config: true
