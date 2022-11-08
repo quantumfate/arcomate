@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Leon Connor Holm
+  description: Configure dotfiles
+  license: MIT
+  min_ansible_version: '2.0'
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+    - name: Debian
+  galaxy_tags:
+    - dotfiles

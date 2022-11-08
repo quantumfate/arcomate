@@ -1,0 +1,8 @@
+---
+dotile_packages:
+  - git
+  - dotbare
+
+dotfile_env: .bare-dotfiles
+
+dotfile_ssh_url: git@github.com:quantumfate/bare-dotfiles.git

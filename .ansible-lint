@@ -3,3 +3,12 @@ skip_list:
   - 'fqcn-builtins'
   - 'yaml'
   - '403'
+
+enable_list:
+  - fqcn-builtins  # opt-in
+  - no-log-password  # opt-in
+  - no-same-owner  # opt-in
+  - 'yaml'
+  - 'role-name'
+# needed for pre-commit or we will not see warnings
+warn_list: []

@@ -1,0 +1,6 @@
+---
+- name: Import bare repo task
+  include_tasks: barerepo.yml
+  tags:
+    - git
+    - barerepository

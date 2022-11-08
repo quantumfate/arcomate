@@ -15,6 +15,10 @@
     validate: 'visudo -cf %s'
     mode: 0600
 
+- name: Set the aur builder as a fact
+  set_fact:
+    aur_user: aur_builder
+    
 - name: Ensure the AUR helper yay is installed
   community.general.pacman: 
     name:
@@ -24,7 +28,7 @@
     state: present
 
 - name: Install all specified packages
-  become_user: aur_builder
+  become_user: "{{ aur_user }}"
   kewlfft.aur.aur:
     use: yay
     update_cache: yes
@@ -32,12 +36,3 @@
     extra_args: --useask
     name:
       "{{ all_packages }}"
-
-
-# - name: Install all specified packages
-#   community.general.pacman:
-#     name: feh
-#     update_cache: yes
-#     executable: yay
-#     state: present
-#     extra_args: --builddir /var/cache/yay

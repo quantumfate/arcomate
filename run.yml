@@ -23,6 +23,12 @@
       - system
       - config
 
+  - role: system/dotfiles
+    become: no
+    tags:
+      - system
+      - dotfiles
+
   - role: development/docker
     tags:
       - develoopment

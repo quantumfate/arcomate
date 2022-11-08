@@ -4,9 +4,15 @@ zsh_export_vars_extras:
   - { name: 'Java Home', variable: 'JAVA_HOME', value: $JDK_HOME/bin }
   - { name: 'Default editor', variable: 'EDITOR', value: 'nvim'}
   - { name: 'Default editor', variable: 'VISUAL', value: 'nvim'}
+  - { name: 'Dotbare directory', variable: 'DOTBARE_DIR', value: $HOME/.bare-dotfiles }
+  - { name: 'Dotbare tree', variable: 'DOTBARE_TREE', value: $HOME }
 
 zsh_paths_extras:
   - { name: 'Java', path: $JAVA_HOME }
 
 zsh_aliases_extra:
-  - { alias: 'devon', action: 'source ~/.devon/devon' }
+  - { alias: 'baredotfiles', action: "/usr/bin/git --git-dir=$HOME/.bare-dotfiles/ --work-tree=$HOME" }
+  - { alias: 'lsdot', action: "baredotfiles ls-files" }
+  - { alias: 'devon', action: "source ~/.devon/devon" }
+
+dotfiles_upstream_origin: main

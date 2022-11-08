@@ -1,0 +1,58 @@
+---
+- name: Ensure that required packages are installed
+  kewlfft.aur.aur:
+    use: yay
+    update_cache: yes
+    state: present
+    extra_args: --useask
+    name: "{{ dotile_packages }}"
+
+- name: Initialize the dotbare Repository
+  environment: 
+    # Settin env vars to have dot bare work as expected
+    DOTBARE_DIR: "/home/leonch/.bare-dotfiles"
+    DOTBARE_TREE: "/home/leonch"
+  block:
+    - name: Get information about the state of the bare Repository on the machine
+      stat: 
+        path: "/home/leonch/.bare-dotfiles"
+      register: dotfiledir
+    
+    - name: Get the current state of the existing bare Repository
+      command: dotbare status
+      register: dotstatus
+      changed_when: false
+      when: dotfiledir.stat.exists and dotfiledir.stat.isdir 
+
+    - name: Create a backup of the current working tree
+      command: dotbare fbackup
+      changed_when: false
+      when: dotfiledir.stat.exists and dotfiledir.stat.isdir 
+
+    - name: Try to update the local Repository
+      command: dotbare pull
+      register: dotbarepull
+      changed_when: dotbarepull.rc == 0 # Pull was successful
+      when: dotfiledir.stat.exists and dotfiledir.stat.isdir 
+
+    - name: Stash the existing bare Repository
+      command: dotbare stash
+      when: (dotfiledir.stat.exists and dotfiledir.stat.isdir) and dotbarepull.rc == 1
+
+    - name: Clone and initialize existing bare
+      ansible.builtin.command: dotbare finit -u "{{ dotfile_ssh_url }}"
+      args:
+        chdir: $HOME
+      when: not dotfiledir.stat.exists
+      register: bare_init
+      changed_when: bare_init.rc == 0
+
+    ## At this point the repository must exist
+    - name: Set the upstream branch for the machine
+      ansible.builtin.command: dotbare push --set-upstream origin {{ dotfiles_upstream_origin }}
+      register: upstreamout
+      changed_when: "'set up to track' in upstreamout.stdout"
+  
+    - name: Drop the Stash
+      command: dotbare stash drop
+      when: (dotfiledir.stat.exists and dotfiledir.stat.isdir) and dotbarepull.rc == 1
