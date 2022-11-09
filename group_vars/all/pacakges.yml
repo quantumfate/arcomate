@@ -11,6 +11,7 @@ dev_packages:
   - openjdk17-src
   - openjdk17-doc
   - jdk17-openjdk
+  - gradle
 
 # Development Utility
 dev_util_packages:
