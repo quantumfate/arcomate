@@ -7,6 +7,7 @@ zsh_export_vars_extras:
   - { name: 'Default editor', variable: 'VISUAL', value: 'nvim'}
   - { name: 'Dotbare directory', variable: 'DOTBARE_DIR', value: $HOME/.bare-dotfiles }
   - { name: 'Dotbare tree', variable: 'DOTBARE_TREE', value: $HOME }
+  - { name: 'Node version manager', variable: 'NVM_DIR', value: '$HOME/.nvm' }
 
 zsh_paths_extras:
   - { name: 'Java', path: $JAVA_HOME }

@@ -6,7 +6,7 @@ homedir: /home/leonch/
 ansible_user: leonch
 
 # Rolling release enabler
-update_system: true
+update_system: false
 
 # Enabling roles
 enable_docker: true

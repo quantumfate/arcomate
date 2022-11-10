@@ -12,6 +12,7 @@ dev_packages:
   - openjdk17-doc
   - jdk17-openjdk
   - gradle
+  - nvm
 
 # Development Utility
 dev_util_packages:
