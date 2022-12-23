@@ -2,6 +2,14 @@
 
 # Development
 dev_packages:
+  # Kubernetes
+  - etcd 
+  - kubernetes-control-plane
+  - kubelet
+  - containerd
+  - kubectl
+  - helm
+  # Ansible
   - ansible
   - ansible-language-server
   - ansible-lint
@@ -83,6 +91,10 @@ music_packages:
 
 # Utility
 utility_packages:
+  - rpi-imager
+  - xclip
+  - zathura
+  - parcellite
   - imagewriter
   - udiskie
   - keepassxc
