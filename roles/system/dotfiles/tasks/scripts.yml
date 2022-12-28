@@ -1,0 +1,11 @@
+---
+- name: Create the script directory
+  file:
+    path: "{{ home_dir }}/.scripts"
+    state: directory
+    owner: "{{ system_user }}"
+    mode: "0755"
+- name: git@github.com:quantumfate/utilityscripts.git
+  git:
+    repo: git@github.com:quantumfate/utilityscripts.git
+    dest: "{{ home_dir }}.scripts"

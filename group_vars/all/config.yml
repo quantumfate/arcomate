@@ -1,20 +1,29 @@
 # ZSH config
 zsh_export_vars_extras:
-  - { name: 'Java Home', variable: 'JAVA_HOME', value: /usr/lib/jvm/java-17-openjdk }
-  - { name: 'JDK Home', variable: 'JDK_HOME', value: $JAVA_HOME/bin }
-  - { name: 'Gradle Home', variable: 'GRADLE_USER_HOME', value: $HOME/.gradle }
-  - { name: 'Default editor', variable: 'EDITOR', value: 'nvim'}
-  - { name: 'Default editor', variable: 'VISUAL', value: 'nvim'}
-  - { name: 'Dotbare directory', variable: 'DOTBARE_DIR', value: $HOME/.bare-dotfiles }
-  - { name: 'Dotbare tree', variable: 'DOTBARE_TREE', value: $HOME }
-  - { name: 'Node version manager', variable: 'NVM_DIR', value: '$HOME/.nvm' }
+  - {
+      name: "Java Home",
+      variable: "JAVA_HOME",
+      value: /usr/lib/jvm/java-17-openjdk,
+    }
+  - { name: "JDK Home", variable: "JDK_HOME", value: $JAVA_HOME/bin }
+  - { name: "Gradle Home", variable: "GRADLE_USER_HOME", value: $HOME/.gradle }
+  - { name: "Default editor", variable: "EDITOR", value: "nvim" }
+  - { name: "Default editor", variable: "VISUAL", value: "nvim" }
+  - {
+      name: "Dotbare directory",
+      variable: "DOTBARE_DIR",
+      value: $HOME/.bare-dotfiles,
+    }
+  - { name: "Dotbare tree", variable: "DOTBARE_TREE", value: $HOME }
+  - { name: "Node version manager", variable: "NVM_DIR", value: "$HOME/.nvm" }
 
 zsh_paths_extras:
-  - { name: 'Java', path: $JAVA_HOME }
+  - { name: "Java", path: $JAVA_HOME }
 
 zsh_aliases_extra:
-  - { alias: 'baredotfiles', action: "/usr/bin/git --git-dir=$HOME/.bare-dotfiles/ --work-tree=$HOME" }
-  - { alias: 'lsdot', action: "baredotfiles ls-files" }
-  - { alias: 'devon', action: "source ~/.devon/devon" }
+  - { alias: "lsdot", action: "dotbare ls-files" }
 
 dotfiles_upstream_origin: main
+
+system_user: leonch
+home_dir: /home/leonch

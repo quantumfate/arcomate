@@ -1,0 +1,8 @@
+---
+- name: Install the symbolic links for scripts
+  ansible.builtin.file:
+    src: "{{ item.source }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - "{{ dotfiles_symlinks }}"
