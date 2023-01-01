@@ -1,0 +1,4 @@
+---
+systemd_root_dir: /etc/systemd
+systemd_conf_dir: /etc/systemd/system.conf.d
+systemd_conf_file: systemd.conf

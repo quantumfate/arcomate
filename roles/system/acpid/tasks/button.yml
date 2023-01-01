@@ -1,0 +1,17 @@
+---
+- name: Configure the acpid to handle hibernate when lid closes
+  block:
+    - name: Install sleep button event handler for acpid
+      template:
+        src: susbend-button.j2
+        dest: /etc/acpi/events/sleep-button
+        owner: root
+        group: root
+
+    - name: Install sleep button event handler for acpid
+      template:
+        src: susbend-button.sh.j2
+        dest: /etc/acpi/actions/sleep-button.sh
+        owner: root
+        group: root
+        mode: 0644

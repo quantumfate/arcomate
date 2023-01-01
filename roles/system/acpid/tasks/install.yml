@@ -1,0 +1,8 @@
+- name: Install relevant packages
+  become_user: "{{ aur_user }}"
+  kewlfft.aur.aur:
+    use: yay
+    update_cache: yes
+    state: present
+    extra_args: --useask
+    name: "{{ acpi_packages }}"

@@ -1,0 +1,5 @@
+# System
+systemd_enabled: yes
+dotfiles_enabled: yes
+acpid_enabled: yes
+config_enabled: yes

@@ -1,0 +1,5 @@
+#!/bin/sh
+case "$3" in
+    SLPB) systemctl hibernate ;;
+    *)    logger "ACPI action undefined: $3" ;;
+esac

@@ -1,0 +1,6 @@
+---
+- name: Restart and enable the acpid
+  service:
+    name: acpid.service
+    state: restarted
+    enabled: yes
