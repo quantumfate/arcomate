@@ -1,8 +1,8 @@
 ---
 ### This task can be run at the end of a playbook.
 ### It will trigger events for packages defined
-### in roles and handlers when a something needs 
-### to be done to a configuration associated to an
+### in roles and handlers when  something needs
+### to be done to a configuration that is associated
 ### installed package.
 ### ##############################################
 ### Example use case:
@@ -11,23 +11,22 @@
 ### The issue is that when ranger receives a feature update
 ### that extends its configuration capabilities the new
 ### feature would be overriden by the current users
-### configuration. Therefore after an update we 
+### configuration. Therefore after an update we
 ### need to reconfigure ranger to apply the new configs
 ### to our user's directory and then we make our changes.
 
 - name: Silently notifying all handlers
   block:
+    - name: Notify ranger
+      assert: { that: true, quiet: true }
+      changed_when: true
+      when: "updated_packages.packages is defined and 'ranger' in updated_packages.packages"
+      notify:
+        - Reconfigure ranger
 
-  - name: Notify ranger
-    assert: { that: true, quiet: true }
-    changed_when: true
-    when: "updated_packages.packages is defined and 'ranger' in updated_packages.packages"
-    notify:
-      - Reconfigure ranger
-
-  - name: Notify git
-    assert: { that: true, quiet: true }
-    changed_when: true
-    when: "updated_packages.packages is defined and 'git' in updated_packages.packages"
-    notify:
-      - Reconfigure git
+    - name: Notify git
+      assert: { that: true, quiet: true }
+      changed_when: true
+      when: "updated_packages.packages is defined and 'git' in updated_packages.packages"
+      notify:
+        - Reconfigure git

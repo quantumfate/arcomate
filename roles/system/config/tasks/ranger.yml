@@ -1,4 +1,13 @@
 ---
+- name: Install relevant packages
+  become_user: "{{ aur_user }}"
+  kewlfft.aur.aur:
+    use: yay
+    update_cache: yes
+    state: present
+    extra_args: --useask
+    name: "{{ acpi_packages }}"
+
 - name: Copy ranger configuration files into the user directory
   ansible.builtin.command: ranger --copy-config=all
   register: ranger_output
@@ -6,20 +15,20 @@
 - name: Make changes to rc.conf
   block:
     - name: Check if rc.conf exists
-      stat: 
+      stat:
         path: "{{ homedir }}.config/ranger/rc.conf"
       register: rcconf
-        
+
     - name: Activate rangers image preview
       lineinfile:
         dest: "{{ homedir }}.config/ranger/rc.conf"
-        regexp: '^set preview_images false$'
-        line: 'set preview_images true'
+        regexp: "^set preview_images false$"
+        line: "set preview_images true"
       when: rcconf.stat.exists
 
     - name: Set Ueberzug to be the default image preview
       lineinfile:
         dest: "{{ homedir }}.config/ranger/rc.conf"
-        regexp: '^set preview_images_method .*$'
-        line: 'set preview_images_method ueberzug'
+        regexp: "^set preview_images_method .*$"
+        line: "set preview_images_method ueberzug"
       when: rcconf.stat.exists
