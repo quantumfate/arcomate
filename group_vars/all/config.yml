@@ -25,7 +25,10 @@ zsh_paths_extras:
   - { name: "All scripts", path: $HOME/.scripts/**/*.sh }
 
 zsh_aliases_extras:
-  - { alias: "lsdot", action: "dotbare ls-files" }
+  - {
+      alias: "ranger",
+      action: 'ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"',
+    }
   - { alias: "udot", action: "dotbare add --update" }
   - { alias: "sdot", action: "dotbare status -s" }
   - { alias: "pdot", action: "dotbare push" }
