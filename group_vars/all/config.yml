@@ -17,17 +17,23 @@ zsh_export_vars_extras:
   - { name: "Dotbare tree", variable: "DOTBARE_TREE", value: $HOME }
   - { name: "Node version manager", variable: "NVM_DIR", value: "$HOME/.nvm" }
 
+zsh_sources_extras:
+  - { name: Custom Functions, path: "$HOME/.scripts/customfunctions" }
+
 zsh_paths_extras:
   - { name: "Java", path: $JAVA_HOME }
+  - { name: "All scripts", path: $HOME/.scripts/**/*.sh }
 
 zsh_aliases_extras:
   - { alias: "lsdot", action: "dotbare ls-files" }
   - { alias: "udot", action: "dotbare add --update" }
-  - { alias: "statdot", action: "dotbare status -s" }
+  - { alias: "sdot", action: "dotbare status -s" }
+  - { alias: "pdot", action: "dotbare push" }
 
   - { alias: "lsgit", action: "git ls-files" }
   - { alias: "ugit", action: "git add --update" }
-  - { alias: "statgit", action: "git status -s" }
+  - { alias: "sgit", action: "git status -s" }
+  - { alias: "pgit", action: "git push" }
 dotfiles_upstream_origin: main
 
 system_user: leonch
