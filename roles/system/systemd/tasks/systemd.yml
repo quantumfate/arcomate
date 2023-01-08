@@ -1,0 +1,31 @@
+---
+- name: Create the systemd conf configuration directory
+  file:
+    path: "{{ systemd_root_dir }}/{{ systemd_conf_dir }}"
+    state: directory
+    owner: "root"
+    mode: "0644"
+- name: Check if system.conf exists
+  stat:
+    path: "{{ systemd_root_dir }}/{{ systemd_conf_file }}"
+  register: systemdconf
+
+- name: Copy the default system.conf file into the configuration directory
+  ansible.builtin.copy:
+    src: "{{ systemd_root_dir }}/{{ systemd_conf_file }}"
+    dest: "{{ systemd_root_dir }}/{{ systemd_conf_dir }}/{{ systemd_conf_file }}"
+    owner: foo
+    group: foo
+    mode: "0644"
+  register: sconfdir
+  when: not systemdconf.stat.exists
+
+- name: Set the default timeout for stopping services
+  lineinfile:
+    dest: "{{ systemd_root_dir }}/{{ systemd_conf_dir }}/{{ systemd_conf_file }}"
+    regexp: "{{ item.reg }}"
+    line: "{{ item.opt }}"
+    backup: true
+  loop:
+    - "{{ systemd_config_options }}"
+  when: systemdconf.stat.exists or systemd_conf_file in sconfdir

@@ -1,0 +1,31 @@
+---
+- name: Create the logind conf configuration directory
+  file:
+    path: "{{ systemd_root_dir }}/{{ systemd_logind_conf_dir }}"
+    state: directory
+    owner: "root"
+    mode: "0644"
+- name: Check if logind.conf exists
+  stat:
+    path: "{{ systemd_root_dir }}/{{ systemd_logind_conf_file }}"
+  register: logindconf
+
+- name: Copy the default logind.conf file into the configuration directory
+  ansible.builtin.copy:
+    src: "{{ systemd_root_dir }}/{{ systemd_logind_conf_file }}"
+    dest: "{{ systemd_root_dir }}/{{ systemd_logind_conf_dir }}/{{ systemd_logind_conf_file }}"
+    owner: foo
+    group: foo
+    mode: "0644"
+  register: lconfdir
+  when: not logindconf.stat.exists
+
+- name: Configure the logind config file
+  lineinfile:
+    dest: "{{ systemd_root_dir }}/{{ systemd_logind_conf_dir }}/{{ systemd_logind_conf_file }}"
+    regexp: "{{ item.reg }}"
+    line: "{{ item.opt }}"
+    backup: true
+  loop:
+    - "{{ logind_config_options }}"
+  when: logindconf.stat.exists or systemd_logind_conf_file in lconfdir

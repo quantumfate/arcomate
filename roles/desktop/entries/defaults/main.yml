@@ -1,0 +1,9 @@
+desktop_entry_path: /usr/share/applications
+desktop_entries:
+  - { name: mail-aerc.desktop, add: aerc.desktop.j2, remove: aerc.desktop }
+  - {
+      name: notion-app-grammar,
+      add: notion-disabled-lang.desktop.j2,
+      remove: notion-app-enhanced.desktop,
+    }
+  - { name: ranger-alternate, add: ranger.desktop.j2, remove: ranger.desktop }

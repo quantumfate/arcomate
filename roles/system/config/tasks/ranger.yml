@@ -30,5 +30,5 @@
       lineinfile:
         dest: "{{ homedir }}.config/ranger/rc.conf"
         regexp: "^set preview_images_method .*$"
-        line: "set preview_images_method ueberzug"
+        line: "set preview_images_method kitty"
       when: rcconf.stat.exists

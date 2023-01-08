@@ -1,3 +1,5 @@
 ---
-- name: Include the configuration task
-  include_tasks: conf.yml
+- name: Include the systemd configuration task
+  include_tasks: systemd.yml
+- name: Include the logind configuration task
+  include_tasks: logind.yml

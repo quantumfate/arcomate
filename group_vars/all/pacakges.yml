@@ -3,7 +3,7 @@
 # Development
 dev_packages:
   # Kubernetes
-  - etcd 
+  - etcd
   - kubernetes-control-plane
   - kubelet
   - containerd
@@ -14,6 +14,7 @@ dev_packages:
   - ansible-language-server
   - ansible-lint
   - python-pip
+  # Dev
   - neovim
   - visual-studio-code-bin
   - openjdk17-src
@@ -32,9 +33,8 @@ dev_util_packages:
 # Desktop Environment Packages
 deenv_packages:
   - zsh
-  - lightdm
-  - lightdm-slick-greeter
   - picom
+  - sddm-git
   - dolphin
   - thunar
   - thunar-archive-plugin
@@ -47,21 +47,17 @@ deenv_packages:
   - ueberzug
   - volumeicon
   - blueberry
-  - xfce4-power-manager
-  - xfce4-appfinder
-  - xfce4-notifyd
-  - xfce4-panel
-  - xfce4-screenshooter
-  - xfce4-settings
-  - xfce4-taskmanager 
-  - xfce4-terminal
   - neofetch
 
 # Social packages
 social_packages:
   - teams
   - telegram-desktop
-  - thunderbird
+  - aerc
+
+study_packages:
+  - notion-app-enhanced
+  - obsidian
 
 # themes and theming
 themes_packages:
@@ -72,7 +68,7 @@ themes_packages:
   - nordzy-icon-theme-git
   - dracula-cursors-git
   - dracula-gtk-theme
-  - dracula-icons-git 
+  - dracula-icons-git
   - noto-fonts
 
 # Browser
@@ -92,7 +88,6 @@ music_packages:
 # Utility
 utility_packages:
   - rpi-imager
-  - xclip
   - zathura
   - parcellite
   - imagewriter
@@ -110,9 +105,5 @@ utility_packages:
   - unzip
   - upower
   - tmux
-
-# Cloud packages
-cloud_packages:
-  - dropbox
 
 all_packages: "{{ dev_packages + dev_util_packages + deenv_packages + social_packages + themes_packages + browser_packages + music_packages + utility_packages }}"
