@@ -20,9 +20,14 @@ zsh_export_vars_extras:
 zsh_paths_extras:
   - { name: "Java", path: $JAVA_HOME }
 
-zsh_aliases_extra:
+zsh_aliases_extras:
   - { alias: "lsdot", action: "dotbare ls-files" }
+  - { alias: "udot", action: "dotbare add --update" }
+  - { alias: "statdot", action: "dotbare status -s" }
 
+  - { alias: "lsgit", action: "git ls-files" }
+  - { alias: "ugit", action: "git add --update" }
+  - { alias: "statgit", action: "git status -s" }
 dotfiles_upstream_origin: main
 
 system_user: leonch
