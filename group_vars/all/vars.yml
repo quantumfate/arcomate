@@ -2,11 +2,8 @@ gitmail: leonconnorholm@gmail.com
 gituser: Leon Connor Holm
 email: leon-holm@outlook.de
 shell: /bin/zsh
-homedir: /home/leonch/
+homedir: /home/leonch
 ansible_user: leonch
 
 # Rolling release enabler
-update_system: false
-
-# Enabling roles
-enable_docker: true
+update_system: no

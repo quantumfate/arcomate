@@ -1,6 +1,8 @@
 # System
-systemd_enabled: yes
-dotfiles_enabled: yes
-acpid_enabled: yes
-config_enabled: yes
-docker_enabled: yes
+system_systemd_enabled: yes
+system_dotfiles_enabled: yes
+system_acpid_enabled: no
+system_config_enabled: yes
+dev_docker_enabled: yes
+desktop_entries_enabled: yes
+zsh_enabled: yes

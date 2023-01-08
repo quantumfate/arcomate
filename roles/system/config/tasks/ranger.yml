@@ -16,19 +16,19 @@
   block:
     - name: Check if rc.conf exists
       stat:
-        path: "{{ homedir }}.config/ranger/rc.conf"
+        path: "{{ homedir }}/.config/ranger/rc.conf"
       register: rcconf
 
     - name: Activate rangers image preview
       lineinfile:
-        dest: "{{ homedir }}.config/ranger/rc.conf"
+        dest: "{{ homedir }}/.config/ranger/rc.conf"
         regexp: "^set preview_images false$"
         line: "set preview_images true"
       when: rcconf.stat.exists
 
     - name: Set Ueberzug to be the default image preview
       lineinfile:
-        dest: "{{ homedir }}.config/ranger/rc.conf"
+        dest: "{{ homedir }}/.config/ranger/rc.conf"
         regexp: "^set preview_images_method .*$"
         line: "set preview_images_method kitty"
       when: rcconf.stat.exists

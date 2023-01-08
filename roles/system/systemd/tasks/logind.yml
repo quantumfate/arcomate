@@ -13,6 +13,7 @@
 - name: Copy the default logind.conf file into the configuration directory
   ansible.builtin.copy:
     src: "{{ systemd_root_dir }}/{{ systemd_logind_conf_file }}"
+    remote_src: true
     dest: "{{ systemd_root_dir }}/{{ systemd_logind_conf_dir }}/{{ systemd_logind_conf_file }}"
     owner: foo
     group: foo
@@ -26,6 +27,5 @@
     regexp: "{{ item.reg }}"
     line: "{{ item.opt }}"
     backup: true
-  loop:
-    - "{{ logind_config_options }}"
+  loop: "{{ logind_config_options }}"
   when: logindconf.stat.exists or systemd_logind_conf_file in lconfdir

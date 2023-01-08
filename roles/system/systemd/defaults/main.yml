@@ -2,23 +2,23 @@
 systemd_root_dir: /etc/systemd
 
 # Systemd
-systemd_conf_dir: /etc/systemd/system.conf.d
-systemd_conf_file: systemd.conf
+systemd_conf_dir: system.conf.d
+systemd_conf_file: system.conf
 systemd_config_options:
-  - { reg: "^*LogLevel=*$", opt: "LogLevel=err" }
-  - { reg: "^*LogTarget=*$", opt: "LogTarget=journal" }
-  - { reg: "^*LogColor=*$", opt: "LogColor=yes" }
-  - { reg: "^*LogTime=*$", opt: "LogTime=yes" }
-  - { reg: "^*DefaultTimeoutStopSec=*s$", opt: "DefaultTimeoutStopSec=15s" }
+  - { reg: "^#?LogLevel=.*$", opt: LogLevel=err }
+  - { reg: "^#?LogTarget=.*$", opt: LogTarget=journal }
+  - { reg: "^#?LogColor=.*$", opt: LogColor=yes }
+  - { reg: "^#?LogTime=.*$", opt: LogTime=yes }
+  - { reg: "^#?DefaultTimeoutStopSec=.*s$", opt: DefaultTimeoutStopSec=15s }
 
 # Logind
-systemd_logind_conf_dir: /etc/systemd/logind.conf.d
+systemd_logind_conf_dir: logind.conf.d
 systemd_logind_conf_file: logind.conf
 
 logind_config_options:
-  - { reg: "^*HandleLidSwitch=*$", opt: "HandleLidSwitch=hibernate" }
-  - { reg: "^*HandleLidExternal=*$", opt: "HandleLidSwitchExternal=suspend" }
+  - { reg: ^#?HandleLidSwitch=.*$, opt: HandleLidSwitch=hibernate }
+  - { reg: ^#?HandleLidExternal=.*$, opt: HandleLidSwitchExternal=suspend }
   - {
-      reg: "^*HandleLidSwitchExternalPower=*$",
-      opt: "HandleLidSwitchExternalPower=suspend",
+      reg: ^#?HandleLidSwitchExternalPower=*$,
+      opt: HandleLidSwitchExternalPower=suspend,
     }

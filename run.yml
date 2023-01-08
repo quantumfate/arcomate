@@ -9,7 +9,7 @@
       import_tasks: tasks/packages.yml
       tags:
         - packages
-      
+
     - name: Perform a system upgrade
       import_tasks: tasks/updatepackages.yml
       tags:
@@ -17,34 +17,58 @@
         - upgrade
       when: update_system | default(false)
 
-  roles: 
-  - role: system/config
-    tags:
-      - system
-      - config
+  roles:
+    - role: system/systemd
+      become: yes
+      tags:
+        - system
+        - systemd
+      when: system_systemd_enabled | default(false)
 
-  - role: system/dotfiles
-    become: no
-    tags:
-      - system
-      - dotfiles
+    - role: system/acpid
+      become: yes
+      tags:
+        - systemd
+        - acpid
+      when: system_acpid_enabled | default(false)
 
-  - role: development/docker
-    tags:
-      - develoopment
-      - docker
+    - role: system/config
+      become: no
+      tags:
+        - system
+        - config
+      when: system_config_enabled | default(false)
 
-  - role: quantumfate.zsh
-    vars:
-      zsh_user: "{{ ansible_user }}"
-    tags:
-      - zsh
-      - dotfiles
+    - role: system/dotfiles
+      become: no
+      tags:
+        - system
+        - dotfiles
+      when: system_dotfiles_enabled | default(false)
 
+    - role: desktop/entries
+      become: yes
+      tags:
+        - system
+        - entries
+      when: desktop_entries_enabled | default (false)
 
-    post_tasks:
-      - name: Make sure notifying handlers will run at the end
-        import_tasks: tasks/notifier.yml
-        tags:
-          - notifier
-        
+    - role: development/docker
+      tags:
+        - develoopment
+        - docker
+      when: dev_docker_enabled | default (false)
+
+    - role: quantumfate.zsh
+      vars:
+        zsh_user: "{{ ansible_user }}"
+      tags:
+        - zsh
+        - dotfiles
+      when: zsh_enabled | default(false)
+
+      post_tasks:
+        - name: Make sure notifying handlers will run at the end
+          import_tasks: tasks/notifier.yml
+          tags:
+            - notifier

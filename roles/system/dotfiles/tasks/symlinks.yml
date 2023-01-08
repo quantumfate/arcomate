@@ -1,8 +1,22 @@
 ---
-- name: Install the symbolic links for scripts
+- name: Iterate dotfiles symlincs
+  stat:
+    path: "{{ item.dest }}"
+  loop: "{{ dotfiles_symlinks }}"
+  register: stat_results
+
+- name: Set the list of installed symlinks as a fact
+  set_fact:
+    existing_symlinks: "{{ existing_symlinks | default([]) + [item.stat.path] }}"
+  loop: "{{ stat_results.results }}"
+  when: item.stat.islnk is defined and item.stat.islnk
+
+- name: Install the symbolic links that are not installed yet
   ansible.builtin.file:
     src: "{{ item.source }}"
     dest: "{{ item.dest }}"
     state: link
-  loop:
-    - "{{ dotfiles_symlinks }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  loop: "{{ dotfiles_symlinks }}"
+  when: existing_symlinks is defined and item.dest not in existing_symlinks

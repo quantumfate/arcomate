@@ -1,4 +1,4 @@
---- 
+---
 - name: Create the aur_builder user
   become: yes
   ansible.builtin.user:
@@ -10,19 +10,19 @@
   become: yes
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/11-install-aur_builder
-    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
     create: yes
-    validate: 'visudo -cf %s'
+    validate: "visudo -cf %s"
     mode: 0600
 
 - name: Set the aur builder as a fact
   set_fact:
     aur_user: aur_builder
-    
+
 - name: Ensure the AUR helper yay is installed
-  community.general.pacman: 
+  community.general.pacman:
     name:
-      - base-devel 
+      - base-devel
       - yay-bin
     executable: pacman
     state: present
@@ -33,6 +33,5 @@
     use: yay
     update_cache: yes
     state: present
-    extra_args: --useask
-    name:
-      "{{ all_packages }}"
+    extra_args: --nouseask
+    name: "{{ all_packages }}"

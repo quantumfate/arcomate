@@ -6,12 +6,10 @@
     owner: root
     group: root
     mode: 0644
-  loop:
-    - "{{ desktop_entries }}"
+  loop: "{{ desktop_entries }}"
 
 - name: Remove unwanted desktop entries
   ansible.builtin.file:
     path: "{{ desktop_entry_path }}/{{ item.remove }}"
     state: absent
-  loop:
-    - "{{ desktop_entries }}"
+  loop: "{{ desktop_entries }}"

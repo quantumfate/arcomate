@@ -2,9 +2,13 @@
 dotfiles_upstream_origin: main
 dotfiles_script_path: /home/leonch/.bin/
 dotfiles_symlinks:
-  - { name: Hypr wrapper, source: ~/.config/hypr/wrappedhl, dest: ~/.bin }
+  - {
+      name: Hypr wrapper,
+      source: "{{ homedir }}/.config/hypr/wrappedhl",
+      dest: "{{ homedir }}/.bin",
+    }
   - {
       name: pdfwatcher,
-      source: ~/.scripts/pdfwatcher/pdfwatcher.sh,
-      dest: ~/.bin,
+      source: "{{ homedir }}/.scripts/pdfwatcher/pdfwatcher.sh",
+      dest: "{{ homedir }}/.bin",
     }

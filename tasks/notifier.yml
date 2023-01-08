@@ -30,3 +30,21 @@
       when: "updated_packages.packages is defined and 'git' in updated_packages.packages"
       notify:
         - Reconfigure git
+
+    - name: Notify acpid in system
+      assert: { that: true, quiet: true }
+      changed_when: true
+      when: system_acpid_enabled | default(false)
+      notify:
+        - Restart and enable the acpid
+
+    ### IMPORTANT: Run logind handler at the end when
+    ### the playbook will not be excecuted from a node
+    ### but on localhost!
+    - name: Notify systemd in system
+      assert: { that: true, quiet: true }
+      changed_when: true
+      when: system_systemd_enabled | default(false)
+      notify:
+        - Just force systemd to reread configs
+        - Restart the systemd logind
