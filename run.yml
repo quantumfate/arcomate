@@ -23,7 +23,7 @@
       tags:
         - system
         - secrets
-      when: system_sercrets_enabled | default(false)
+      when: system_secrets_enabled | default(false)
 
     - role: system/systemd
       become: yes
