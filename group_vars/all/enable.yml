@@ -1,8 +1,12 @@
 # System
+system_secrets_enabled: yes
 system_systemd_enabled: yes
 system_dotfiles_enabled: yes
 system_acpid_enabled: no
 system_config_enabled: yes
+# Dev
 dev_docker_enabled: yes
+# Desktop
 desktop_entries_enabled: yes
+# External roles
 zsh_enabled: yes

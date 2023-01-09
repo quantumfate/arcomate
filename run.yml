@@ -18,6 +18,13 @@
       when: update_system | default(false)
 
   roles:
+    - role: system/secrets
+      become: yes
+      tags:
+        - system
+        - secrets
+      when: system_sercrets_enabled | default(false)
+
     - role: system/systemd
       become: yes
       tags:
@@ -28,7 +35,7 @@
     - role: system/acpid
       become: yes
       tags:
-        - systemd
+        - system
         - acpid
       when: system_acpid_enabled | default(false)
 

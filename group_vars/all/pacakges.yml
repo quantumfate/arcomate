@@ -87,6 +87,7 @@ music_packages:
 
 # Utility
 utility_packages:
+  - inotify-tools
   - rpi-imager
   - zathura
   - parcellite
